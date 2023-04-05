@@ -1,0 +1,27 @@
+.radio_group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.radio_group--item {
+    position: relative;
+    min-height: 1.5rem;
+    display: flex;
+    cursor: pointer;
+}
+
+.radio_group--item input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+}
+
+.radio_group--content {
+    border: 1px solid black;
+    flex-grow: 1;
+}
+
+.radio_group--item input:checked + .radio_group--content {
+    border: 1px solid red;
+}
