@@ -1,9 +1,9 @@
 import './App.css'
-import MultipageDialog from './components/MultipageDialog';
-import FirstPage from './components/FirstPage';
-import SecondPage from './components/SecondPage';
-import ThirdPage from './components/ThirdPage';
-import LastPage from './components/LastPage';
+import MultipageDialog from './MultipageDialog';
+import FirstPage from './pages/FirstPage';
+import SecondPage from './pages/SecondPage';
+import ThirdPage from './pages/ThirdPage';
+import LastPage from './pages/LastPage';
 
 function App() {
 

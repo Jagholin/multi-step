@@ -1,0 +1,39 @@
+.switch {
+    width: 2.5rem;
+    height: 1.5rem;
+    border-radius: 1000px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+    background-color: #eee;
+
+    position: relative;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        inset: 0;
+    }
+
+    .switch--slider {
+        display: block;
+        position: relative;
+        margin-left: 0.15rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 100%;
+        background-color: white;
+        transition: transform 0.2s ease-in-out;
+        border: 2px solid #444;
+    }
+
+    input[type="checkbox"]:checked + .switch--slider {
+        transform: translateX(1rem);
+    }
+}
+
+.checked {
+    background-color: #444;
+}

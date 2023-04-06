@@ -18,10 +18,11 @@
 }
 
 .radio_group--content {
-    border: 1px solid black;
+    border-radius: 5px;
+    border: 2px solid black;
     flex-grow: 1;
 }
 
 .radio_group--item input:checked + .radio_group--content {
-    border: 1px solid red;
+    border-color: red;
 }

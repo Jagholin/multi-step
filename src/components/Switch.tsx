@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import css from "./Switch.module.scss";
 
-function Switch(props: React.InputHTMLAttributes<HTMLInputElement>) {
+const Switch = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+(props: React.InputHTMLAttributes<HTMLInputElement>, cbRef) => {
+  const [switchChecked, setSwitchChecked] = useState(false);
+
   return (
-    <div className={css["switch"]}>
-      <input type="checkbox" className={css["switch--checkbox"]} {...props} />
+    <label className={`${css["switch"]} ${switchChecked ? css["checked"] : ""}`}>
+      <input 
+        ref={cbRef} 
+        type="checkbox" 
+        className={css["switch--checkbox"]} 
+        {...props} />
       <span className={css["switch--slider"]}></span>
-    </div>
+    </label>
   )
-}
+});
 
 export default Switch

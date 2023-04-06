@@ -1,0 +1,25 @@
+.option_container {
+    padding: 1rem;
+}
+
+.plan_type_container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.addon_container {
+    &> * + * {
+        margin-top: 1rem;
+    }
+    .addon_item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &> :nth-child(2) {
+            flex-grow: 1;
+        }
+    }
+}
