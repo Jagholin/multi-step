@@ -3,6 +3,7 @@ import css from "../MultipageDialog.module.scss";
 import Switch from '../components/Switch';
 import RadioSelect from '../components/RadioSelect';
 import plansData from "../models/plans";
+import { useEffect } from 'react';
 
 const { plans } = plansData;
 
@@ -22,9 +23,13 @@ const itemComponentsYr = plans.map(plan => {
 
 const itemValues = plans.map(plan => plan.value);
 
-function SecondPage({ register, errors, watch }: PageProps) {
+function SecondPage({ register, errors, watch, setCurrentFields }: PageProps) {
 
   const planType = watch("planTypeYearly");
+
+  useEffect(() => {
+    setCurrentFields(["plan", "planTypeYearly"]);
+  }, []);
 
   return (
     <>
@@ -35,7 +40,8 @@ function SecondPage({ register, errors, watch }: PageProps) {
         register={register} 
         name="plan" 
         itemComponents={planType ? itemComponentsYr : itemComponentsMo} 
-        values={itemValues} />
+        values={itemValues}
+        required />
 
       <div className={css["plan_type_container"]}>
         Monthly <Switch {...register("planTypeYearly")} /> Yearly

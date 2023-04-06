@@ -1,11 +1,17 @@
 import { PageProps } from "../MultipageDialog"
 import plansData from "../models/plans";
 import css from "../MultipageDialog.module.scss";
+import { useCallback, useEffect } from "react";
 
-function LastPage({ watch, handleChangePlan }: PageProps) {
+function LastPage({ watch, setCurrentPage, setCurrentFields }: PageProps) {
   const { plan, planTypeYearly, online, profile, storage } = watch();
 
   const myPlan = plansData.plans.find(p => p.value === plan);
+
+  const handleChangePlan = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setCurrentPage(1);
+  }, [setCurrentPage]);
   
   let total = (planTypeYearly ? myPlan?.priceYearly : myPlan?.priceMonthly) || 0;
   const planPricing = <li className={`${css["pricing_item_container"]} ${css["pricing_item_container--plan"]}`}>
@@ -34,6 +40,10 @@ function LastPage({ watch, handleChangePlan }: PageProps) {
       );
     }
   });
+
+  useEffect(() => {
+    setCurrentFields([]);
+  }, []);
 
   return (
     <>

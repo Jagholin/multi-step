@@ -1,16 +1,20 @@
-import React, { useId } from 'react'
+import React, { useEffect, useId } from 'react'
 import { PageProps } from '../MultipageDialog';
 
 // Email pattern from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#basic_validation
 const EMAIL_PATTERN = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const PHONE_PATTERN = /^\+?[0-9 ]+$/;
 
-function FirstPage({ register, errors }: PageProps) {
+function FirstPage({ register, errors, setCurrentFields }: PageProps) {
   const nameId = useId();
   const emailId = useId();
   const phoneId = useId();
 
   console.log("Error elements:", errors);
+
+  useEffect(() => {
+    setCurrentFields(["name", "email", "phone"]);
+  }, []);
 
   return (
     <>

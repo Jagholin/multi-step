@@ -2,10 +2,11 @@ import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { MyFieldValues, PageProps } from '../MultipageDialog'
 import css from "../MultipageDialog.module.scss";
 import plansData, { AddonType } from "../models/plans";
+import { useEffect } from 'react';
 
 const { addons } = plansData;
 
-type CheckboxPanelProps = Omit<PageProps, "errors" | "watch" | "handleChangePlan"> & {
+type CheckboxPanelProps = Omit<PageProps, "errors" | "watch" | "setCurrentPage" | "setCurrentFields"> & {
   name: AddonType;
   title: string;
   description: string;
@@ -45,8 +46,12 @@ const itemComponentsYr = (register: UseFormRegister<MyFieldValues>) => addons.ma
     price={`$${addon.priceYearly}/yr`} />
 });
 
-function ThirdPage({ register, errors, watch }: PageProps) {
+function ThirdPage({ register, errors, watch, setCurrentFields }: PageProps) {
   const planType = watch("planTypeYearly");
+  useEffect(() => {
+    setCurrentFields(addons.map(addon => addon.value));
+  }, []);
+
   return (
     <>
       <h2>Pick add-ons</h2>
