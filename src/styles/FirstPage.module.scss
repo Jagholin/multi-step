@@ -1,0 +1,32 @@
+@use './variables';
+
+label, input {
+    display: block;
+    width: 100%;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-top: 1em;
+
+    .error {
+        float: right;
+        color: variables.$primary-color-5;
+        & ~ input {
+            border-color: variables.$primary-color-5;
+        }
+    }
+}
+
+input {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid variables.$secondary-color-1;
+    border-radius: 4px;
+    cursor: pointer;
+    &:focus-visible {
+        outline: none;
+        border: 2px solid variables.$primary-color-1;
+    }
+}
