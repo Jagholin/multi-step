@@ -1,6 +1,6 @@
 import React from 'react'
 import { UseFormRegister, FieldValues, Path } from 'react-hook-form';
-import css from "./RadioSelect.module.scss";
+import css from "../styles/RadioSelect.module.scss";
 
 type Props<FV extends FieldValues> = {
   register: UseFormRegister<FV>;

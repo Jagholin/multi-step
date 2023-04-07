@@ -1,5 +1,5 @@
 import { PageProps } from '../MultipageDialog';
-import css from "../MultipageDialog.module.scss";
+import css from "../styles/MultipageDialog.module.scss";
 import Switch from '../components/Switch';
 import RadioSelect from '../components/RadioSelect';
 import plansData from "../models/plans";

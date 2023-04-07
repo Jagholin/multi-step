@@ -21,17 +21,19 @@ function FirstPage({ register, errors, setCurrentFields }: PageProps) {
       <h2>Personal info</h2>
       <p>Please provide your name, email address, and phone number.</p>
 
-      <label htmlFor={nameId}>Name</label>
-      {errors.name && <span>This field is required</span>}
-      <input type="text" id={nameId} {...register("name", {required: true})} placeholder='e.g. Stephen King' />
+      <div>
+        <label htmlFor={nameId}>Name</label>
+        {errors.name && <span>This field is required</span>}
+        <input type="text" id={nameId} {...register("name", {required: true})} placeholder='e.g. Stephen King' />
 
-      <label htmlFor={emailId}>Email Address</label>
-      {errors.email && <span>{errors.email.type === "pattern" ? "Incorrect Email format" : "This field is required"}</span>}
-      <input type="email" id={emailId} {...register("email", {required: true, pattern: EMAIL_PATTERN})} placeholder='e.g. stephenking@lorem.com' />
+        <label htmlFor={emailId}>Email Address</label>
+        {errors.email && <span>{errors.email.type === "pattern" ? "Incorrect Email format" : "This field is required"}</span>}
+        <input type="email" id={emailId} {...register("email", {required: true, pattern: EMAIL_PATTERN})} placeholder='e.g. stephenking@lorem.com' />
 
-      <label htmlFor={phoneId}>Phone Number</label>
-      {errors.phone && <span>{errors.phone.type === "pattern" ? "Incorrect phone format" : "This field is required"}</span>}
-      <input type="text" id={phoneId} {...register("phone", {required: true, pattern: PHONE_PATTERN})} placeholder='e.g. +1 234 567 890' />
+        <label htmlFor={phoneId}>Phone Number</label>
+        {errors.phone && <span>{errors.phone.type === "pattern" ? "Incorrect phone format" : "This field is required"}</span>}
+        <input type="text" id={phoneId} {...register("phone", {required: true, pattern: PHONE_PATTERN})} placeholder='e.g. +1 234 567 890' />
+      </div>
     </>
   )
 }

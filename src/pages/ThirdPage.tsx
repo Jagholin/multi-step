@@ -1,6 +1,6 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { MyFieldValues, PageProps } from '../MultipageDialog'
-import css from "../MultipageDialog.module.scss";
+import css from "../styles/MultipageDialog.module.scss";
 import plansData, { AddonType } from "../models/plans";
 import { useEffect } from 'react';
 

@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
-import css from "./Switch.module.scss";
+import css from "../styles/Switch.module.scss";
 
 const Switch = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
 (props: React.InputHTMLAttributes<HTMLInputElement>, cbRef) => {

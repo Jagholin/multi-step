@@ -1,4 +1,3 @@
-import './App.css'
 import MultipageDialog from './MultipageDialog';
 import FirstPage from './pages/FirstPage';
 import SecondPage from './pages/SecondPage';
