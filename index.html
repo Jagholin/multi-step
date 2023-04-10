@@ -11,15 +11,25 @@
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
+    .sr_only { 	position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0; 
+    }
   </style>
 </head>
 <body>
-  
-  <div id="root"></div>
-  <div class="attribution">
+  <header><h1 class="sr_only">Multi-step form</h1></header>
+  <main id="root"></main>
+  <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/Jagholin/">Pavel Belskiy</a>.
-  </div>
+  </footer>
   
   <script type="module" src="/src/main.tsx"></script>
 </body>

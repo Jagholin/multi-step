@@ -66,7 +66,7 @@ function MultipageDialog({ pages, pageTitles, lastPage }: Props) {
       <div className={css["dialog_sidebar"]}>
         <ul>
           {pageTitles.map((title, index) => (
-            <li key={index} onClick={() => setCurrentPage(index)} className={index === currentPage ? css["current"] : ""}>
+            <li key={index} className={index === currentPage ? css["current"] : ""}>
               <div className={css["dialog_sidebar-circle"]}>
                 {index + 1}
               </div>
