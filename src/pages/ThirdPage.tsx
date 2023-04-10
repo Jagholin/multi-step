@@ -1,6 +1,6 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { MyFieldValues, PageProps } from '../MultipageDialog'
-import css from "../styles/MultipageDialog.module.scss";
+import css from "../styles/ThirdPage.module.scss";
 import plansData, { AddonType } from "../models/plans";
 import { useEffect } from 'react';
 
@@ -22,6 +22,7 @@ function CheckboxPanel ({ register, name, title, description, price }: CheckboxP
         <div className={css["addon_item--description"]}>{description}</div>
       </div>
       <div className={css["addon_item--price"]}>{price}</div>
+      <div className={css["addon_item--background"]} />
     </div>
   )
 }
@@ -33,7 +34,7 @@ const itemComponentsMo = (register: UseFormRegister<MyFieldValues>) => addons.ma
     name={addon.value}
     title={addon.title}
     description={addon.description}
-    price={`$${addon.priceMonthly}/mo`} />
+    price={`+$${addon.priceMonthly}/mo`} />
 });
 
 const itemComponentsYr = (register: UseFormRegister<MyFieldValues>) => addons.map(addon => {
@@ -43,7 +44,7 @@ const itemComponentsYr = (register: UseFormRegister<MyFieldValues>) => addons.ma
     name={addon.value}
     title={addon.title}
     description={addon.description}
-    price={`$${addon.priceYearly}/yr`} />
+    price={`+$${addon.priceYearly}/yr`} />
 });
 
 function ThirdPage({ register, errors, watch, setCurrentFields }: PageProps) {
