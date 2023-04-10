@@ -22,7 +22,7 @@ function FirstPage({ register, errors, setCurrentFields }: PageProps) {
       <h2>Personal info</h2>
       <p>Please provide your name, email address, and phone number.</p>
 
-      <div>
+      <div className={css["first_page"]}>
         <label>
           <span>Name</span> {errors.name && <span className={css["error"]}>This field is required</span>}
           <input type="text" id={nameId} {...register("name", {required: true})} placeholder='e.g. Stephen King' />

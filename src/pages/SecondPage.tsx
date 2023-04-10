@@ -1,5 +1,5 @@
 import { PageProps } from '../MultipageDialog';
-import css from "../styles/MultipageDialog.module.scss";
+import css from "../styles/SecondPage.module.scss";
 import Switch from '../components/Switch';
 import RadioSelect from '../components/RadioSelect';
 import plansData from "../models/plans";
@@ -9,6 +9,7 @@ const { plans } = plansData;
 
 const itemComponentsMo = plans.map(plan => {
   return () => <div className={css["option_container"]} >
+    <div className={css["option_icon"]} style={{["--icon-path" as string]: `url(${plan.image})`}}></div>
     <div className={css["option_title"]}>{plan.title}</div>
     <div className={css["option_price"]}>${plan.priceMonthly}/mo</div>
   </div>
@@ -16,8 +17,10 @@ const itemComponentsMo = plans.map(plan => {
 
 const itemComponentsYr = plans.map(plan => {
   return () => <div className={css["option_container"]} >
+    <div className={css["option_icon"]} style={{["--icon-path" as string]: `url(${plan.image})`}}></div>
     <div className={css["option_title"]}>{plan.title}</div>
     <div className={css["option_price"]}>${plan.priceYearly}/yr</div>
+    <div className={css["option_savings"]}>2 months free</div>
   </div>
 });
 
@@ -44,7 +47,9 @@ function SecondPage({ register, errors, watch, setCurrentFields }: PageProps) {
         required />
 
       <div className={css["plan_type_container"]}>
-        Monthly <Switch {...register("planTypeYearly")} /> Yearly
+        <span className={planType ? "" : css["selected"]}>Monthly</span> 
+        <Switch {...register("planTypeYearly")} /> 
+        <span className={planType ? css["selected"] : ""}>Yearly</span>
       </div>
     </>
   )

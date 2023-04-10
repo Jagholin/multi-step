@@ -1,0 +1,56 @@
+@use './variables';
+
+.option_container {
+    display: grid;
+    grid-template-areas: "icon title" "icon price" "icon savings";
+    grid-template-columns: 3rem 1fr;
+    padding: 1rem;
+    gap: 0.5rem;
+    .option_icon {
+        grid-area: icon;
+        width: 2rem;
+        height: 2rem;
+        margin-right: 0.5rem;
+        background-image: var(--icon-path);
+        background-size: contain;
+    }
+    .option_title {
+        grid-area: title;
+        font-weight: 700;
+    }
+    .option_price {
+        grid-area: price;
+        color: variables.$secondary-color-1;
+        font-weight: 500;
+        font-size: 0.9em;
+    }
+    .option_savings {
+        grid-area: savings;
+        font-weight: 500;
+        font-size: 0.8em;
+    }
+
+    @media screen and (min-width: variables.$breakpoint-mobile) {
+        grid-template-columns: 1fr;
+        grid-template-areas: "icon" "title" "price" "savings";
+        gap: 0.5rem;
+        .option_title {
+            margin-top: 2rem;
+        }
+    }
+}
+
+.plan_type_container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: variables.$secondary-color-3;
+
+    .selected {
+        font-weight: 500;
+    }
+}

@@ -1,3 +1,5 @@
+@use './variables';
+
 .radio_group {
     display: flex;
     flex-direction: column;
@@ -19,10 +21,22 @@
 
 .radio_group--content {
     border-radius: 5px;
-    border: 2px solid black;
+    border: 2px solid variables.$secondary-color-2;
     flex-grow: 1;
 }
 
 .radio_group--item input:checked + .radio_group--content {
-    border-color: red;
+    border-color: variables.$primary-color-2;
+    border-width: 2px;
+    background-color: variables.$secondary-color-3;
+}
+
+@media screen and (min-width: variables.$breakpoint-mobile) {
+    .radio_group {
+        flex-direction: row;
+        gap: 1rem;
+        &> * {
+            flex: 1;
+        }
+    }
 }

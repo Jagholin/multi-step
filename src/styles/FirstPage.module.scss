@@ -1,11 +1,11 @@
 @use './variables';
 
-label, input {
+.first_page label, .first_page input {
     display: block;
     width: 100%;
 }
 
-label {
+.first_page label {
     font-size: 0.9rem;
     font-weight: 400;
     margin-top: 1em;
@@ -19,7 +19,7 @@ label {
     }
 }
 
-input {
+.first_page input {
     font-size: 1rem;
     padding: 0.5rem 1rem;
     border: 1px solid variables.$secondary-color-1;
