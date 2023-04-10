@@ -1,0 +1,55 @@
+@use './variables';
+
+.pricing_container {
+    border-radius: 1rem;
+    background-color: variables.$secondary-color-3;
+    padding: 1rem;
+    .pricing_item_container--title {
+        color: variables.$secondary-color-1;
+    }
+
+    .pricing_item_container--plan .pricing_item_container--title {
+        font-weight: 500;
+        color: variables.$primary-color-1;
+    }
+
+    .pricing_item_container--plan .pricing_item_container--price {
+        font-weight: 700;
+        color: variables.$primary-color-1;
+        align-self: center;
+    }
+
+    .pricing_list {
+        list-style: none;
+        li {
+            display: flex;
+            :first-child {
+                flex-grow: 1;
+            }
+        }
+
+        li + li {
+            margin-top: 1rem;
+        }
+    }
+
+    & > * + * {
+        margin-top: 0.8rem;
+        border-top: 1px solid variables.$secondary-color-2;
+        padding-top: 1rem;
+    }
+}
+
+.pricing_total {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-top: 1rem;
+    .pricing_total--title {
+        color: variables.$secondary-color-1;
+    }
+    .pricing_total--price {
+        font-weight: 700;
+        color: variables.$primary-color-2;
+    }
+}

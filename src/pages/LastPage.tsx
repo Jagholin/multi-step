@@ -1,6 +1,6 @@
 import { PageProps } from "../MultipageDialog"
 import plansData from "../models/plans";
-import css from "../styles/MultipageDialog.module.scss";
+import css from "../styles/LastPage.module.scss";
 import { useCallback, useEffect, useMemo } from "react";
 
 function LastPage({ watch, setCurrentPage, setCurrentFields }: PageProps) {
