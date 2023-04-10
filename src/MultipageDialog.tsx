@@ -23,9 +23,10 @@ export type MyFieldValues = Record<AddonType, boolean> & {
 type Props = {
   pages: React.ComponentType<PageProps>[];
   pageTitles: string[];
+  lastPage: React.ComponentType;
 }
 
-function MultipageDialog({ pages, pageTitles }: Props) {
+function MultipageDialog({ pages, pageTitles, lastPage }: Props) {
   const { register, handleSubmit, watch, formState, trigger: triggerValidation } = useForm<MyFieldValues>({ 
     mode: "onBlur",
     criteriaMode: "all",
@@ -38,6 +39,7 @@ function MultipageDialog({ pages, pageTitles }: Props) {
   });
   const [currentPage, setCurrentPage] = useState(0);
   const currentFields = useRef<(keyof MyFieldValues)[]>([]);
+  const [displayLastPage, setDisplayLastPage] = useState(false);
 
   const nextPageHandler = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -53,7 +55,12 @@ function MultipageDialog({ pages, pageTitles }: Props) {
     setCurrentPage((val) => val - 1);
   }, []);
 
+  const submitFormHandler = useCallback(() => {
+    setDisplayLastPage(true);
+  }, [])
+
   const MyPage = pages[currentPage];
+  const LastPage = lastPage;
   return (
     <div className={css["dialog_container"]}>
       <div className={css["dialog_sidebar"]}>
@@ -73,18 +80,21 @@ function MultipageDialog({ pages, pageTitles }: Props) {
       </div>
       <form className={css["dialog_content"]}>
         <div>
-          <MyPage 
-            register={register} 
-            errors={formState.errors} 
-            watch={watch}
-            setCurrentFields={(fields: (keyof MyFieldValues)[]) => currentFields.current = fields}
-            setCurrentPage={setCurrentPage} />
+          {displayLastPage ? 
+            <LastPage /> : 
+            <MyPage 
+              register={register} 
+              errors={formState.errors} 
+              watch={watch}
+              setCurrentFields={(fields: (keyof MyFieldValues)[]) => currentFields.current = fields}
+              setCurrentPage={setCurrentPage} />
+          }
         </div>
-        <div className={css["dialog_buttons"]}>
+        {displayLastPage || <div className={css["dialog_buttons"]}>
           { currentPage > 0 && <button className={css["dialog_back"]} onClick={backPageHandler}>Go Back</button> }
           { currentPage < pages.length - 1 && <button className={css["dialog_next"]} onClick={nextPageHandler}>Next Step</button>}
-          { currentPage === pages.length - 1 && <button className={css["dialog_submit"]} onClick={handleSubmit((data) => console.log(data))}>Confirm</button>}
-        </div>
+          { currentPage === pages.length - 1 && <button className={css["dialog_submit"]} onClick={handleSubmit((_data) => submitFormHandler())}>Confirm</button>}
+        </div>}
       </form>
     </div>
   )

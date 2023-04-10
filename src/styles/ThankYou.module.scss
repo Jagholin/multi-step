@@ -1,0 +1,19 @@
+.icon_checkmark {
+    background-image: url(@/assets/images/icon-thank-you.svg);
+    height: 80px;
+    width: 80px;
+    justify-self: center;
+}
+
+.final_container {
+    display: grid;
+    place-content: center;
+    height: 100%;
+    text-align: center;
+    * {
+        max-width: 450px;
+    }
+    h2 {
+        margin-top: 1em;
+    }
+}
