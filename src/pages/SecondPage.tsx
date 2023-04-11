@@ -26,12 +26,13 @@ const itemComponentsYr = plans.map(plan => {
 
 const itemValues = plans.map(plan => plan.value);
 
-function SecondPage({ register, errors, watch, setCurrentFields }: PageProps) {
+function SecondPage({ register, errors, watch, setCurrentFields, setFocus }: PageProps) {
 
   const planType = watch("planTypeYearly");
 
   useEffect(() => {
     setCurrentFields(["plan", "planTypeYearly"]);
+    setFocus("plan");
   }, []);
 
   return (

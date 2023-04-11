@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { FieldErrors, FieldValues, UseFormRegister, UseFormWatch, useForm } from "react-hook-form";
+import { FieldErrors, FieldValues, UseFormRegister, UseFormSetFocus, UseFormSetValue, UseFormWatch, useForm } from "react-hook-form";
 import css from "./styles/MultipageDialog.module.scss";
 import { AddonType, PlanType } from "./models/plans";
 
@@ -7,6 +7,8 @@ export type PageProps = {
   register: UseFormRegister<MyFieldValues>;
   errors: FieldErrors<MyFieldValues>;
   watch: UseFormWatch<MyFieldValues>;
+  setValue: UseFormSetValue<MyFieldValues>;
+  setFocus: UseFormSetFocus<MyFieldValues>;
   // handleChangePlan: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   setCurrentPage: (page: number) => void;
   setCurrentFields: (fields: (keyof MyFieldValues)[]) => void;
@@ -27,7 +29,7 @@ type Props = {
 }
 
 function MultipageDialog({ pages, pageTitles, lastPage }: Props) {
-  const { register, handleSubmit, watch, formState, trigger: triggerValidation } = useForm<MyFieldValues>({ 
+  const { register, handleSubmit, watch, formState, trigger: triggerValidation, setValue, setFocus } = useForm<MyFieldValues>({ 
     mode: "onBlur",
     criteriaMode: "all",
     defaultValues: {
@@ -63,7 +65,7 @@ function MultipageDialog({ pages, pageTitles, lastPage }: Props) {
   const LastPage = lastPage;
   return (
     <div className={css["dialog_container"]}>
-      <div className={css["dialog_sidebar"]}>
+      <aside className={css["dialog_sidebar"]}>
         <ul>
           {pageTitles.map((title, index) => (
             <li key={index} className={index === currentPage ? css["current"] : ""}>
@@ -77,7 +79,7 @@ function MultipageDialog({ pages, pageTitles, lastPage }: Props) {
             </li>
           ))}
         </ul>
-      </div>
+      </aside>
       <form className={css["dialog_content"]}>
         <div>
           {displayLastPage ? 
@@ -86,6 +88,8 @@ function MultipageDialog({ pages, pageTitles, lastPage }: Props) {
               register={register} 
               errors={formState.errors} 
               watch={watch}
+              setValue={setValue}
+              setFocus={setFocus}
               setCurrentFields={(fields: (keyof MyFieldValues)[]) => currentFields.current = fields}
               setCurrentPage={setCurrentPage} />
           }

@@ -6,7 +6,7 @@ import css from '../styles/FirstPage.module.scss';
 const EMAIL_PATTERN = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const PHONE_PATTERN = /^\+?[0-9 ]+$/;
 
-function FirstPage({ register, errors, setCurrentFields }: PageProps) {
+function FirstPage({ register, errors, setCurrentFields, setFocus }: PageProps) {
   const nameId = useId();
   const emailId = useId();
   const phoneId = useId();
@@ -15,6 +15,7 @@ function FirstPage({ register, errors, setCurrentFields }: PageProps) {
 
   useEffect(() => {
     setCurrentFields(["name", "email", "phone"]);
+    setFocus("name");
   }, []);
 
   return (
@@ -24,18 +25,18 @@ function FirstPage({ register, errors, setCurrentFields }: PageProps) {
 
       <div className={css["first_page"]}>
         <label>
-          <span>Name</span> {errors.name && <span className={css["error"]}>This field is required</span>}
-          <input type="text" id={nameId} {...register("name", {required: true})} placeholder='e.g. Stephen King' />
+          <span>Name</span> {errors.name && <span className={css["error"]} role="alert">This field is required</span>}
+          <input type="text" id={nameId} {...register("name", {required: true})} placeholder='e.g. Stephen King' autoComplete='name' />
         </label>
 
         <label>
-          <span>Email Address</span> {errors.email && <span className={css["error"]}>{errors.email.type === "pattern" ? "Incorrect Email format" : "This field is required"}</span>}
-          <input type="email" id={emailId} {...register("email", {required: true, pattern: EMAIL_PATTERN})} placeholder='e.g. stephenking@lorem.com' />
+          <span>Email Address</span> {errors.email && <span className={css["error"]} role="alert">{errors.email.type === "pattern" ? "Incorrect Email format" : "This field is required"}</span>}
+          <input type="email" id={emailId} {...register("email", {required: true, pattern: EMAIL_PATTERN})} placeholder='e.g. stephenking@lorem.com' autoComplete='email' />
         </label>
 
         <label>
-          <span>Phone Number</span> {errors.phone && <span className={css["error"]}>{errors.phone.type === "pattern" ? "Incorrect phone format" : "This field is required"}</span>}
-          <input type="text" id={phoneId} {...register("phone", {required: true, pattern: PHONE_PATTERN})} placeholder='e.g. +1 234 567 890' />
+          <span>Phone Number</span> {errors.phone && <span className={css["error"]} role="alert">{errors.phone.type === "pattern" ? "Incorrect phone format" : "This field is required"}</span>}
+          <input type="text" id={phoneId} {...register("phone", {required: true, pattern: PHONE_PATTERN})} placeholder='e.g. +1 234 567 890' autoComplete='tel' />
         </label>
       </div>
     </>
